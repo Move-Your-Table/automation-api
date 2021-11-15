@@ -226,7 +226,6 @@ Temporary Items
 *.sig
 
 pkg/
-src/
 
 # End of https://www.toptal.com/developers/gitignore/api/archlinuxpackages
  

@@ -213,19 +213,10 @@ Temporary Items
 # Created by https://www.toptal.com/developers/gitignore/api/archlinuxpackages
 # Edit at https://www.toptal.com/developers/gitignore?templates=archlinuxpackages
 
-### ArchLinuxPackages ###
-*.tar
-*.tar.*
-*.jar
-*.exe
-*.msi
-*.zip
-*.tgz
-*.log
-*.log.*
-*.sig
+# Created by https://www.toptal.com/developers/gitignore/api/dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=dotenv
 
-pkg/
+### dotenv ###
+.env
 
-# End of https://www.toptal.com/developers/gitignore/api/archlinuxpackages
- 
+# End of https://www.toptal.com/developers/gitignore/api/dotenv

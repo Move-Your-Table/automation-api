@@ -1,11 +1,12 @@
-#[macro_use] extern crate rocket;
+use warp::Filter;
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
+#[tokio::main]
+async fn main() {
+    // GET /hello/warp => 200 OK with body "Hello, warp!"
+    let hello = warp::path!("hello" / String)
+        .map(|name| format!("Hello, Humam, welcome to {}!", name));
 
-#[launch]
-fn rocket() -> _ {
-    rocket::build().mount("/", routes![index])
+    warp::serve(hello)
+        .run(([0, 0, 0, 0], 3030))
+        .await;
 }

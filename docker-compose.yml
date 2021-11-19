@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  rust:
+    image: rust:alpine3.14
+    container_name: Automation-API
+    ports:
+      - ${RUST_PORT}:3030
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app

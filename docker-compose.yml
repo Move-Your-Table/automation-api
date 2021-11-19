@@ -5,9 +5,15 @@ services:
     image: rust:alpine3.14
     container_name: Automation-API
     ports:
-      - ${RUST_PORT}:3030
+      - ${WARP_PORT}:3030
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/app
+  rabbitmq:
+    image: rabbitmq:3.8.25-alpine
+    restart: always
+    container_name: RabbitMQ-Rust
+    ports:
+      - ${RABBITMQ_PORT}:5672

@@ -3,7 +3,7 @@ version: "3.8"
 services:
   rust:
     profiles: ["container-dev"]
-    image: rust:alpine3.14
+    image: myt/automation-api:1.0
     container_name: Automation-API
     ports:
       - ${WARP_PORT}:3030

@@ -1,7 +1,7 @@
 FROM rust:alpine3.14
 
 WORKDIR /app
-COPY . /app
+COPY . .
 
 RUN apk update && \
     apk add musl-dev

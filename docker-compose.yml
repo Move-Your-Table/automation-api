@@ -14,8 +14,9 @@ services:
       - .:/app
   rabbitmq:
     profiles: ["container-dev", "local-dev"]
-    image: rabbitmq:3.8.25-alpine
+    image: rabbitmq:3.8.25-manager-alpine
     restart: always
     container_name: RabbitMQ-Rust
     ports:
       - ${RABBITMQ_PORT}:5672
+      - ${RABBITMQ_MANAGER}:15672

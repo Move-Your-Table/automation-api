@@ -1,10 +1,14 @@
 // Port of https://www.rabbitmq.com/tutorials/tutorial-one-python.html. Run this
 // in one shell, and run the hello_world_publish example in another.
 use amiquip::{Connection, ConsumerMessage, ConsumerOptions, QueueDeclareOptions, Result};
+use dotenv;
 
 fn main() -> Result<()> {
+    // Load dotenv file
+    dotenv::dotenv().ok();
+
     // Open connection.
-    let mut connection = Connection::insecure_open("amqp://guest:guest@172.19.0.3:5672")?;
+    let mut connection = Connection::insecure_open(&*dotenv::var("RABBITMQ_URL").unwrap())?;
 
     // Open a channel - None says let the library choose the channel ID.
     let channel = connection.open_channel(None)?;

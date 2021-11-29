@@ -4,7 +4,7 @@ use amiquip::{Connection, ConsumerMessage, ConsumerOptions, QueueDeclareOptions,
 
 fn main() -> Result<()> {
     // Open connection.
-    let mut connection = Connection::insecure_open("amqp://guest:guest@172.18.0.3:5672")?;
+    let mut connection = Connection::insecure_open("amqp://guest:guest@172.19.0.3:5672")?;
 
     // Open a channel - None says let the library choose the channel ID.
     let channel = connection.open_channel(None)?;

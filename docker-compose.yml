@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   rust_dev:
-    profiles: ["dev-container", "dev-local"]
-    image: myt/dev/automation-api:dev
+    profiles: ["dev-container"]
+    image: myt/automation-api:dev
     container_name: Automate-API-Dev
     ports:
       - ${WARP_PORT}:3030
@@ -14,10 +14,10 @@ services:
       - .:/app
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq_dev
-      - RABBIT_MQ_ENDPOINT=${RABBITMQ_PORT}
+      - RABBITMQ_PORT=5672
   rust_prod:
     profiles: ["staging", "production"]
-    image: myt/dev/automation-api:prod
+    image: myt/automation-api:prod
     container_name: Automate-API-Prod
     ports:
       - ${WARP_PORT}:3030
@@ -26,8 +26,7 @@ services:
       dockerfile: ./docker/Rust_Prod_Dockerfile
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq_dev
-      - RABBIT_MQ_ENDPOINT=${RABBITMQ_PORT}
-  
+      - RABBITMQ_PORT=5672
   rabbitmq_dev:
     profiles: ["dev-container", "dev-local", "staging"]
     image: rabbitmq:3.9.10-management-alpine
@@ -37,6 +36,6 @@ services:
       - ${RABBITMQ_EXTERNAL_MANAGEMENT_PORT}:15672
   rabbitmq-prod:
     profiles: ["prod"]
-    image: rabbitmq:3.9.10-management-alpine
+    image: rabbitmq:3.9.10-alpine
     container_name: RabbitMQ-Prod
 

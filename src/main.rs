@@ -4,7 +4,7 @@ use warp::Filter;
 async fn main() {
     // GET /hello/warp => 200 OK with body "Hello, warp!"
     let hello = warp::path!("hello" / String)
-        .map(|name| format!("Hello, Humam, welcome to {}!", name));
+        .map(|name| format!("Hello, Human, welcome to {}!", name));
 
     warp::serve(hello)
         .run(([0, 0, 0, 0], 3030))

@@ -17,7 +17,7 @@ services:
       - RABBIT_MQ_ENDPOINT=${RABBITMQ_PORT}
   rust_prod:
     profiles: ["staging", "production"]
-    image: myt/dev/automation-api:staging
+    image: myt/dev/automation-api:prod
     container_name: Automate-API-Prod
     ports:
       - ${WARP_PORT}:3030

@@ -1,10 +1,12 @@
-FROM rust:alpine3.14
+# TODO: Speed up development build times
+
+FROM rust:1.57.0
 
 WORKDIR /app
 COPY . .
 
-RUN apk update && \
-    apk add musl-dev
+RUN apt update
+RUN apt install musl-dev -y
 RUN cargo install cargo-watch
 
 EXPOSE 3030

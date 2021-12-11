@@ -1,0 +1,13 @@
+# TODO: Speed up development build times
+
+FROM rust:1.57.0
+
+WORKDIR /app
+COPY . .
+
+RUN apt update
+RUN apt install musl-dev -y
+RUN cargo install cargo-watch
+
+EXPOSE 3030
+CMD ["cargo", "watch", "-x", "run"]

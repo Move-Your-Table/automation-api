@@ -57,6 +57,19 @@ MYT Automation server is a server that conects the microservices architecture to
    ```bash
    $ docker-compose --profile prod down
    ```
+
+#### Adding other services
+Because [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/gateway), [Automation API](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/automateapi) and [Back-End](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/back-end) share the same custom network, you can build these and get the production server up & running.
+
+- For [Back-End](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/back-end), clone the project, navigate to the root of the project and perform the following command:
+  ```bash
+  $ docker-compose up nestjs_prod -d
+  ```
+- For [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/gateway), clone the project, navigate to the root of the project and perform the following command:
+  ```bash
+  $ docker-compose up tsed_prod -d
+  ```
+
 # Miscellaneous
 ## `.env` configuration
 > :bulb: There's a `.env.example` file available to get you started!

@@ -16,7 +16,7 @@ services:
       - RABBITMQ_ENDPOINT=rabbitmq_dev
       - RABBITMQ_PORT=5672
   rust_prod:
-    profiles: ["staging", "production"]
+    profiles: ["staging", "prod"]
     image: myt/automation-api:prod
     container_name: Automate-API-Prod
     ports:
@@ -38,4 +38,6 @@ services:
     profiles: ["prod"]
     image: rabbitmq:3.9.10-alpine
     container_name: RabbitMQ-Prod
-
+networks:
+  default:
+    name: myt

@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app
     environment:
-      - RABBITMQ_ENDPOINT=rabbitmq_dev
+      - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
   rust_prod:
     profiles: ["staging", "prod"]
@@ -25,8 +25,9 @@ services:
       context: .
       dockerfile: ./docker/Rust_Prod_Dockerfile
     environment:
-      - RABBITMQ_ENDPOINT=rabbitmq_dev
+      - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
+
   rabbitmq_dev:
     profiles: ["dev-container", "dev-local", "staging"]
     image: rabbitmq:3.9.10-management-alpine
@@ -34,10 +35,20 @@ services:
     ports:
       - ${RABBITMQ_EXTERNAL_PORT}:5672
       - ${RABBITMQ_EXTERNAL_MANAGEMENT_PORT}:15672
+    networks:
+      default:
+        aliases:
+          - rabbitmq
+  
   rabbitmq-prod:
     profiles: ["prod"]
     image: rabbitmq:3.9.10-alpine
     container_name: RabbitMQ-Prod
+  networks:
+      default:
+        aliases:
+          - rabbitmq
+
 networks:
   default:
     name: myt

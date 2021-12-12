@@ -17,7 +17,7 @@ services:
       - RABBITMQ_PORT=5672
   rust_prod:
     profiles: ["staging", "production"]
-    image: myt/automation-api:prod
+    image: btcreator/myt:automate-api
     container_name: Automate-API-Prod
     ports:
       - ${WARP_PORT}:3030

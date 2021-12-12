@@ -1,12 +1,15 @@
+image: docker:20.10.11
+
 stages:
   - build
 
-Production image:
-  image: docker:20.10.11
-  stage: build
-  services:
+services:
     - docker:20.10.10-dind
+
+before_script:
+  - echo $DOCKER_CI_CD_TOKEN | docker login -u $DOCKER_ID --password-stdin
+Production image:
+  stage: build
   script:
-    - echo $DOCKER_CI_CD_TOKEN | docker login -u $GITLAB_USERNAME $CI_REGISTRY_NAME --password-stdin
     - docker-compose build rust_prod --compress --no-cache
-    - docker push $CI_IMAGE_NAME
+    - docker push ${CI_REGISTRY_NAME}:${CI_IMAGE_TAG}

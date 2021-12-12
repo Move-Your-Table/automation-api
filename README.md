@@ -80,6 +80,10 @@ Because [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/proje
 |COMPOSE_PROJECT_NAME|Name of the compose stack|✖|✖|✖|MYT Automate Server|
 |||||||
 |WARP_PORT|The port used to reach the application from external networks|✔|✔|✔|3030|
+|GATEWAY_ENDPOINT|The endpoint used by the application to reach the gateway server|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
+|GATEWAY_PORT|The port used by the application to reach the gateway server|✔* </br> *\*If the code's running locally*|✖|✖|8080|
+|BACKEND_ENDPOINT|The endpoint used by the application to reach the back-end server|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
+|BACKEND_PORT|The port used by the application to reach the back-end server|✔* </br> *\*If the code's running locally*|✖|✖|8080|
 |||||||
 |RABBITMQ_ENDPOINT|The address used **within** the container network to reach Rabbit MQ|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
 |RABBITMQ_PORT|The port used **within** the container network to communicate with Rabbit MQ|✔* </br> *\*If the code's running locally*|✖|✖|5672|

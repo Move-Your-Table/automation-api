@@ -15,6 +15,15 @@ services:
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
+      - BACK_END_ENDPOINT=nest
+      - BACK_END_PORT=3030
+      - GATEWAY_ENDPOINT=tsed
+      - GATEWAY_PORT=8080
+    networks:
+      default:
+        aliases:
+          - rust
+          - rust_dev
   rust_prod:
     profiles: ["staging", "prod"]
     image: myt/automation-api:prod
@@ -27,6 +36,15 @@ services:
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
+      - BACK_END_ENDPOINT=nest
+      - BACK_END_PORT=3030
+      - GATEWAY_ENDPOINT=tsed
+      - GATEWAY_PORT=8080
+    networks:
+      default:
+        aliases:
+          - rust
+          - rust_prod
 
   rabbitmq_dev:
     profiles: ["dev-container", "dev-local", "staging"]
@@ -39,15 +57,16 @@ services:
       default:
         aliases:
           - rabbitmq
-  
+          - rabbitmq_dev
   rabbitmq-prod:
     profiles: ["prod"]
     image: rabbitmq:3.9.10-alpine
     container_name: RabbitMQ-Prod
-  networks:
-      default:
-        aliases:
-          - rabbitmq
+    networks:
+        default:
+          aliases:
+            - rabbitmq
+            - rabbitmq_prod
 
 networks:
   default:

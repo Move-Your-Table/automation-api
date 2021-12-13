@@ -1,22 +1,73 @@
 version: "3.8"
 
 services:
-  rust:
-    profiles: ["container-dev"]
-    image: myt/automation-api:1.0
-    container_name: Automation-API
+  rust_dev:
+    profiles: ["dev-container"]
+    image: myt/automation-api:dev
+    container_name: Automate-API-Dev
     ports:
       - ${WARP_PORT}:3030
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Rust_Dev_Dockerfile
     volumes:
       - .:/app
-  rabbitmq:
-    profiles: ["container-dev", "local-dev"]
-    image: rabbitmq:3.9.10-management-alpine
-    restart: always
-    container_name: RabbitMQ-Rust
+    environment:
+      - RABBITMQ_ENDPOINT=rabbitmq
+      - RABBITMQ_PORT=5672
+      - BACK_END_ENDPOINT=nest
+      - BACK_END_PORT=3030
+      - GATEWAY_ENDPOINT=tsed
+      - GATEWAY_PORT=8080
+    networks:
+      default:
+        aliases:
+          - rust
+          - rust_dev
+  rust_prod:
+    profiles: ["staging", "prod"]
+    image: myt/automation-api:prod
+    container_name: Automate-API-Prod
     ports:
-      - ${RABBITMQ_PORT}:5672
-      - ${RABBITMQ_MANAGER}:15672
+      - ${WARP_PORT}:3030
+    build:
+      context: .
+      dockerfile: ./docker/Rust_Prod_Dockerfile
+    environment:
+      - RABBITMQ_ENDPOINT=rabbitmq
+      - RABBITMQ_PORT=5672
+      - BACK_END_ENDPOINT=nest
+      - BACK_END_PORT=3030
+      - GATEWAY_ENDPOINT=tsed
+      - GATEWAY_PORT=8080
+    networks:
+      default:
+        aliases:
+          - rust
+          - rust_prod
+
+  rabbitmq_dev:
+    profiles: ["dev-container", "dev-local", "staging"]
+    image: rabbitmq:3.9.10-management-alpine
+    container_name: RabbitMQ-Dev
+    ports:
+      - ${RABBITMQ_EXTERNAL_PORT}:5672
+      - ${RABBITMQ_EXTERNAL_MANAGEMENT_PORT}:15672
+    networks:
+      default:
+        aliases:
+          - rabbitmq
+          - rabbitmq_dev
+  rabbitmq-prod:
+    profiles: ["prod"]
+    image: rabbitmq:3.9.10-alpine
+    container_name: RabbitMQ-Prod
+    networks:
+        default:
+          aliases:
+            - rabbitmq
+            - rabbitmq_prod
+
+networks:
+  default:
+    name: myt

@@ -3,6 +3,8 @@
 use amiquip::{Connection, ConsumerMessage, ConsumerOptions, QueueDeclareOptions, Result};
 use dotenv;
 use std::env;
+use reqwest::header::ACCEPT;
+use serde_json::{from_str, Value};
 
 fn main() -> Result<()> {
     // Load dotenv file
@@ -42,10 +44,12 @@ fn main() -> Result<()> {
 #[tokio::main]
 async fn send_post(body: String){
     dotenv::dotenv().ok();
+    let v: Value = from_str(&*body).unwrap();
     let client = reqwest::Client::new();
     let resp = client
         .post(env::var("AUTOMATE_URL").unwrap())
-        .body(body)
+        .header(ACCEPT,"application/json")
+        .json(&v)
         .send()
         .await
         .unwrap();

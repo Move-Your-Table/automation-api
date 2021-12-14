@@ -12,7 +12,7 @@ production:
   script:
     - docker build -t myt/automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm .
   after_script:
-    - docker save automate:prod -o myt_automate.tar
+    - docker save -o myt_automate.tar automate:prod
   artifacts:
     paths:
       - myt_automate.tar

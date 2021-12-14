@@ -74,19 +74,21 @@ Because [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/proje
 ## `.env` configuration
 > :bulb: There's a `.env.example` file available to get you started!
 
-|Key|Value explanation|Required for Development?|... Staging?|... Production?|Value example|
-|---|---|---|---|---|---|
-|COMPOSE_PROJECT_NAME|Name of the compose stack|✖|✖|✖|MYT Automate Server|
+| Key                               | Value explanation                                                                                   | Required for Development?                  | ... Staging? | ... Production? | Value example                                             |
+|-----------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|--------------|-----------------|-----------------------------------------------------------|
+| COMPOSE_PROJECT_NAME              | Name of the compose stack                                                                           | ✖                                          | ✖            | ✖               | MYT Automate Server                                       |
 |||||||
-|WARP_PORT|The port used to reach the application from external networks|✔|✔|✔|3030|
-|GATEWAY_ENDPOINT|The endpoint used by the application to reach the gateway server|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
-|GATEWAY_PORT|The port used by the application to reach the gateway server|✔* </br> *\*If the code's running locally*|✖|✖|8080|
-|BACKEND_ENDPOINT|The endpoint used by the application to reach the back-end server|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
-|BACKEND_PORT|The port used by the application to reach the back-end server|✔* </br> *\*If the code's running locally*|✖|✖|8080|
+| WARP_PORT                         | The port used to reach the application from external networks                                       | ✔                                          | ✔            | ✔               | 3030                                                      |
+| BACKEND_ENDPOINT                  | The endpoint used by the application to reach the back-end server                                   | ✔* </br> *\*If the code's running locally* | ✖            | ✖               | localhost                                                 |
+| BACKEND_PORT                      | The port used by the application to reach the back-end server                                       | ✔* </br> *\*If the code's running locally* | ✖            | ✖               | 8080                                                      |
 |||||||
-|RABBITMQ_ENDPOINT|The address used **within** the container network to reach Rabbit MQ|✔* </br> *\*If the code's running locally*|✖|✖|localhost|
-|RABBITMQ_PORT|The port used **within** the container network to communicate with Rabbit MQ|✔* </br> *\*If the code's running locally*|✖|✖|5672|
-|RABBITMQ_EXTERNAL_PORT|The port used **outside** the container network to communicate with Rabbit MQ|✔|✔|✖|5672|
-|RABBITMQ_EXTERNAL_MANAGEMENT_PORT|The port used **outside** the container network to communicate with Rabbit MQ|✔|✔|✖|15672|
+| RABBITMQ_ENDPOINT                 | The address used **within** the container network to reach Rabbit MQ                                | ✔* </br> *\*If the code's running locally* | ✖            | ✖               | localhost                                                 |
+| RABBITMQ_PORT                     | The port used **within** the container network to communicate with Rabbit MQ                        | ✔* </br> *\*If the code's running locally* | ✖            | ✖               | 5672                                                      |
+| RABBITMQ_EXTERNAL_PORT            | The port used **outside** the container network to communicate with Rabbit MQ                       | ✔                                          | ✔            | ✖               | 5672                                                      |
+| RABBITMQ_EXTERNAL_MANAGEMENT_PORT | The port used **outside** the container network to communicate with Rabbit MQ                       | ✔                                          | ✔            | ✖               | 15672                                                     |
+| RABBITMQ_QUEUE                    | The name of the queue **within** the container network to now the queue to listen to from Rabbit MQ | ✔                                          | ✔            | ✔               | bookings                                                  |
+|                                   |                                                                                                     |                                            |              |                 |                                                           |
+| AUTOMATE_URL                      | The url used **ouside** the container network to communicate with Power Automate                    | ✔                                          | ✔            | ✔               | https://prod-39.westeurope.logic.azure.com:443/workflows/ |
+
 
 

@@ -10,12 +10,12 @@ production:
     - docker:20.10.10-dind    
   stage: build
   script:
-    - docker build -t myt/automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm
+    - docker build -t myt/automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm .
   after_script:
-    - docker save myt/automate:prod | gzip > myt_automate.tar.gz
+    - docker save automate:prod -o myt_automate.tar
   artifacts:
     paths:
-      - myt_automate.tar.gz
+      - myt_automate.tar
 
 container:
   dependencies:

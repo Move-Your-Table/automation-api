@@ -38,7 +38,7 @@ $ docker-compose --profile dev-container down
 2. Copy the `.env.example`, rename it to `.env` and fill it in according to the [`.env` configuration section](#env-configuration).
 3. Build the project
 ```bash
-$ docker-compose --profile staging up
+$ docker-compose --profile staging up --build -d
 ```
 > ⁉ This staging build will simulate a production environment, but will leave all debug ports & tools available.
 4. When you want to get your app offline, enter the following command:
@@ -51,7 +51,7 @@ $ docker-compose --profile staging down
 2. Copy the `.env.example`, rename it to `.env` and fill it in according to the [`.env` configuration section](#env-configuration).
 3. Build the project
 ```bash
-$ docker-compose --profile prod up
+$ docker-compose --profile prod up --build -d
 ```
 4. When you want to get your app offline, enter the following command:
 ```bash

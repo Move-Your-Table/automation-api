@@ -4,15 +4,16 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 services:
   - docker:19.03.12-dind
+before_script: docker info
 
 # Note that we'll won't be testing the production image here.
 # Being ~3GB in size, we'll don't want to overload the runners
 production: 
   stage: build
   script:
-    - docker build -t myt/automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm
+    - docker build -t automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm .
   after_script:
-    - docker save myt/automate:prod | gzip > myt_automate.tar.gz
+    - docker save automate:prod | gzip > myt_automate.tar.gz
   artifacts:
     paths:
       - myt_automate.tar.gz

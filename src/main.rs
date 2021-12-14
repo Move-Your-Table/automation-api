@@ -11,13 +11,14 @@ fn main() -> Result<()> {
     dotenv::dotenv().ok();
 
     // Open connection.
-    let mut connection = Connection::insecure_open(&*env::var("RABBITMQ_URL").unwrap())?;
+    let rabbit_url = format!("{}{}:{}","amqp://guest:guest@",&*env::var("RABBITMQ_ENDPOINT").unwrap(), &*env::var("RABBITMQ_PORT").unwrap());
+    let mut connection = Connection::insecure_open(&*rabbit_url)?;
 
     // Open a channel - None says let the library choose the channel ID.
     let channel = connection.open_channel(None)?;
 
     // Declare the "hello" queue.
-    let queue = channel.queue_declare("hello", QueueDeclareOptions::default())?;
+    let queue = channel.queue_declare(&*env::var("RABBITMQ_QUEUE").unwrap(), QueueDeclareOptions::default())?;
 
     // Start a consumer.
     let consumer = queue.consume(ConsumerOptions::default())?;

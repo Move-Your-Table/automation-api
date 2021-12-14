@@ -3,7 +3,7 @@
 # re-downloading dependencies if they have not changed.
 FROM rust:1.57.0 AS build
 WORKDIR /usr/src
-
+ENV PATH="${PATH}:/sbin"
 # Download the target for static linking.
 RUN rustup target add x86_64-unknown-linux-musl
 
@@ -17,7 +17,7 @@ RUN cargo build --release
 
 # Copy the source and build the application.
 COPY src ./src
-RUN cargo install --target x86_64-unknown-linux-musl --path .
+RUN cargo install --target x86_64-unknown-linux-gnu --path .
 
 # Copy the statically-linked binary into a scratch container.
 FROM scratch

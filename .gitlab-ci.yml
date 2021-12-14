@@ -3,7 +3,7 @@ variables:
   DOCKER_HOST: tcp://localhost:2375
   DOCKER_TLS_CERTDIR: ""
 services:
-  - docker:19.03.12-dind
+  - docker:19.03.0-dind
 before_script:
   - docker info
 

@@ -5,30 +5,5 @@ stages:
 # Note that we'll won't be testing the production image here.
 # Being ~3GB in size, we'll don't want to overload the runners
 production:
-  image: docker:20.10.10
-  services:
-    - docker:20.10.10-dind    
-  stage: build
-  script:
-    - docker build -t myt/automate:prod -f ./docker/Rust_Prod_Dockerfile -q --rm .
-  after_script:
-    - docker save -o myt_automate.tar automate:prod
-  artifacts:
-    paths:
-      - myt_automate.tar
-
-container:
-  dependencies:
-    - production
-  image: docker:20.10.10
-  services:
-    - docker:20.10.10-dind
-  stage: test
   before_script:
-    - apk add py-pip python3-dev libffi-deb openssl-dev gcc libc-dev rust cargo make
-    - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    - chmod +x /usr/local/bin/docker-compose
-    - ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-    - docker-compose --version
-  script:
-    - ls -al
+    - docker info

@@ -15,6 +15,7 @@ services:
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=${RABBITMQ_QUEUE}
       - BACK_END_ENDPOINT=nest
       - BACK_END_PORT=3030
       - POWER_AUTOMATE=${POWER_AUTOMATE}
@@ -35,6 +36,7 @@ services:
     environment:
       - RABBITMQ_ENDPOINT=rabbitmq
       - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=${RABBITMQ_QUEUE}
       - BACK_END_ENDPOINT=nest
       - BACK_END_PORT=3030
       - POWER_AUTOMATE=${POWER_AUTOMATE}

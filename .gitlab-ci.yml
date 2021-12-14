@@ -4,7 +4,8 @@ variables:
   DOCKER_TLS_CERTDIR: ""
 services:
   - docker:19.03.12-dind
-before_script: docker info
+before_script:
+  - docker info
 
 # Note that we'll won't be testing the production image here.
 # Being ~3GB in size, we'll don't want to overload the runners

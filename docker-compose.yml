@@ -18,7 +18,7 @@ services:
       - RABBITMQ_QUEUE=${RABBITMQ_QUEUE}
       - BACK_END_ENDPOINT=nest
       - BACK_END_PORT=3030
-      - POWER_AUTOMATE=${POWER_AUTOMATE}
+      - AUTOMATE_URL=${AUTOMATE_URL}
     networks:
       default:
         aliases:
@@ -39,7 +39,7 @@ services:
       - RABBITMQ_QUEUE=${RABBITMQ_QUEUE}
       - BACK_END_ENDPOINT=nest
       - BACK_END_PORT=3030
-      - POWER_AUTOMATE=${POWER_AUTOMATE}
+      - AUTOMATE_URL=${AUTOMATE_URL}
 
     networks:
       default:

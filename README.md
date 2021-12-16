@@ -1,5 +1,5 @@
 # MYT Automation Server
-MYT Automation server is a server that conects the microservices architecture to Power Automate, a low code tool for easy integration & automation.
+MYT Automation server is a server that connects the microservices architecture to Power Automate, a low code tool for easy integration & automation.
 
 - Power automate flow import files: https://drive.google.com/file/d/1bQW4BiYT0nZREpIiJ0M-lC6ejpUBWYDU/view?usp=sharing
 

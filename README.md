@@ -65,8 +65,11 @@ Because [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/proje
 
 - For [Back-End](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/back-end), clone the project, navigate to the root of the project and perform the following command:
   ```bash
-  $ npm run start:container:prod
+  $ docker-compose up -d nestjs_dev
+  $ docker-compose up -d mongodb_dev
   ```
+  > :warning: Currently, the GraphQL implementation in the production container seems to be broken, so we suggest using the development version for now.
+
 - For [Gateway](https://git.ti.howest.be/TI/2021-2022/s5/trending-topics/projects/hybrid-work1/gateway), clone the project, navigate to the root of the project and perform the following command:
   ```bash
   $ docker-compose up tsed_prod -d

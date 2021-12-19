@@ -11,7 +11,13 @@ fn main() -> Result<()> {
     dotenv::dotenv().ok();
 
     // Open connection.
-    let rabbit_url = format!("{}{}:{}","amqp://guest:guest@",&*env::var("RABBITMQ_ENDPOINT").unwrap(), &*env::var("RABBITMQ_PORT").unwrap());
+    let rabbit_url = format!(
+        "{}{}:{}@{}:{}",
+        "amqps://",
+        &*env::var("RABBITMQ_USERNAME").unwrap(),
+        &*env::var("RABBITMQ_PASSWORD").unwrap(),
+        &*env::var("RABBITMQ_ENDPOINT").unwrap(),
+        &*env::var("RABBITMQ_PORT").unwrap());
     let mut connection = Connection::insecure_open(&*rabbit_url)?;
 
     // Open a channel - None says let the library choose the channel ID.
